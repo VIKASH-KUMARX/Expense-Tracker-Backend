@@ -11,8 +11,6 @@ router.get('/' ,(req, res)=>{
 
 const transport = nodemailer.createTransport({
   service:"gmail",
-  // port:465,
-  // secure:true,
   auth:{
     user:"teamproject8080@gmail.com",
     pass:"qfxbzfyogwjwehbo"
@@ -34,7 +32,7 @@ router.post('/signup', async(req, res)=>{
       subject: "Verify your gmail for Expe",
       html: `
       <h1>Hello ${username}</h1>
-      <a href="http://localhost:5000/login/activate/${activationToken}">Click here to verify</a>
+      <a href="https://expense-tracker-backend-i5ev.onrender.com/login/activate/${activationToken}">Click here to verify</a>
       `,
     }
     transport.sendMail(mailOptions, async(err, succ)=>{
