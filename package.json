@@ -1,9 +1,11 @@
 {
-  "name": "expressgenerator",
+  "name": "expense-tracker-backend",
   "version": "0.0.0",
+  "main": "app.js",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

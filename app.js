@@ -1,9 +1,9 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-require('dotenv').config();
 const mongoose = require('mongoose')
 const cors = require('cors')
 const bodyParser = require('body-parser')
@@ -18,9 +18,9 @@ var categoryRouter = require('./routes/category');
 
 var app = express();
 
-mongoose.connect(process.env.MONGODB_URL)
-  .then(res=>console.log("MongoDB connected Successfully : ",res))
-  .catch(err=>console.error("Failed to connect MongoDB :",err))
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser:true, useUnifiedTopology: true})
+  .then(res=>console.log("✅ MongoDB connected Successfully"))
+  .catch(err=>console.error("❌ Failed to connect MongoDB"))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -57,5 +57,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`🚀 Server running on port : ${PORT}`));
 
 module.exports = app;
